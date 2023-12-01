@@ -56,32 +56,28 @@ int main(int argc, char **argv) {
     return 1;
   }
 
+
   // Ouverture du fichier résultat
   resFile = fopen(argv[5], "w");
   // Écriture du nombre de terrains
   fprintf(resFile, "%d\n", N);
 
-  // Ouverture du fichier résultat
-    resFile = fopen(argv[5], "w");
-    // Écriture du nombre de terrains
-    fprintf(resFile, "%d\n", N);
+  // Initialisation de la fonction random
+  // A compléter
 
-    // Initialisation de la fonction random
-    // A compléter
-
-    srand(time(NULL));
-    // A compléter
-    // Génération aléatoire des terrains
-    // Écriture des terrains générés dans le fichier resFile
-    // Écriture/Affichage des statistiques
-    for (i = 0; i < N; i++)
-    {
-        generation_aleatoire(&T, l, h, dObst);
-        ecrire_terrain(resFile, &T, l, h);
-        afficher_terrain(&T);
-    }
-    
-    // fermeture des fichiers
-    fclose(resFile);
+  srand(time(NULL));
+  // A compléter
+  // Génération aléatoire des terrains
+  // Écriture des terrains générés dans le fichier resFile
+  // Écriture/Affichage des statistiques
+  for (i = 0; i < N; i++)
+  {
+      generation_aleatoire(&T, l, h, dObst);
+      ecrire_terrain(resFile, &T, l, h);
+      afficher_terrain(&T);
+  }
+  
+  // fermeture des fichiers
+  fclose(resFile);
   return 0;
 }
