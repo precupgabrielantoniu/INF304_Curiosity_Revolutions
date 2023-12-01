@@ -1,6 +1,6 @@
 CC=clang -Wall
 
-PROGRAMMES=test_terrain test_robot robot_terrain curiosity curiosity-test test_generation_terrains
+PROGRAMMES=test_terrain test_robot robot_terrain curiosity curiosity-test test_generation_terrains curiosity-perf
 
 all: $(PROGRAMMES)
 
@@ -43,6 +43,8 @@ generation_terrains.o: generation_terrains.c generation_terrains.h terrain.h
 
 test_generation_terrains.o: test_generation_terrains.c generation_terrains.h terrain.h
 
+curiosity-perf.o:  curiosity-perf.c generation_terrains.h terrain.h programme.h environnement.h robot.h interprete.h type_pile.h
+ 
 ######################################################################
 #                       Règles d'édition de liens                    #
 ######################################################################
@@ -69,6 +71,9 @@ curiosity-test%: curiosity-test.o environnement.o programme.o interprete%.o \
 	$(CC) $^ -o $@
 
 test_generation_terrains:  test_generation_terrains.o generation_terrains.o terrain.o
+	$(CC) $^ -o $@
+
+curiosity-perf: curiosity-perf.o generation_terrains.o terrain.o programme.o environnement.o robot.o interprete.o type_pile.o
 	$(CC) $^ -o $@
 
 clean:
