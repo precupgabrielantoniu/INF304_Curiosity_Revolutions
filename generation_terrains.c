@@ -10,7 +10,8 @@
               La case centrale de T ne contient pas d'obstacle.
  */
 void generation_aleatoire(Terrain *T, int l, int h, float dObst) {
-  srand(time(NULL));
+  T->largeur = l;
+  T->hauteur = h;
   T->tab[h / 2][l / 2] = LIBRE;
   for (int i = 0; i < h; i++)
   {
@@ -19,8 +20,8 @@ void generation_aleatoire(Terrain *T, int l, int h, float dObst) {
       Case *ca = &T->tab[i][j];
       if (i != h / 2 || j != l / 2)
       {
-        float p = rand() / 100;
-        if (p > dObst)
+        float p = rand() / (RAND_MAX + 1.);
+        if (p <= dObst)
         {
           int ob = rand() % 2;
           if (ob)

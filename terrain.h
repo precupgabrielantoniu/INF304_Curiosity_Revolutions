@@ -60,7 +60,8 @@ void afficher_terrain(Terrain *t);
 
 /* Écriture d'un terrain t dans un fichier f ouvert en écriture.
    x et y contiennent les coordonnées du robot
-   Le terrain est écrit au format lisible par lire_terrain */
-void ecrire_terrain(FILE *f, Terrain *t, int x, int y);
+   Le terrain est écrit au format lisible par lire_terrain
+   renvoie la densite d'obstacles entre 0 et 100 */
+int ecrire_terrain(FILE *f, Terrain *t, int x, int y);
 
 #endif

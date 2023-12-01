@@ -161,23 +161,25 @@ void afficher_terrain(Terrain *t) {
   }
 }
 
-void ecrire_terrain(FILE *f, Terrain *T, int x, int y) {
-  int i, j;
+int ecrire_terrain(FILE *f, Terrain *T, int x, int y) {
+  int i, j, nr_obs = 0;
   char c;
-
   fprintf(f, "%d\n", T->largeur);
   fprintf(f, "%d\n", T->hauteur);
   for (j = 0; j < T->hauteur; j++) {
     for (i = 0; i < T->largeur; i++) {
       switch (T->tab[i][j]) {
       case LIBRE:
-        c = '.';
+        if(i == x && j == y) c = 'C';
+        else c = '.';
         break;
       case ROCHER:
         c = '#';
+        nr_obs++;
         break;
       case EAU:
         c = '~';
+        nr_obs++;
         break;
       }
       if (i == x && j == y)
@@ -186,5 +188,6 @@ void ecrire_terrain(FILE *f, Terrain *T, int x, int y) {
     }
     fprintf(f, "\n");
   }
-  fprintf(f, "\n");
+  fprintf(f, "%d\n\n", (100 * nr_obs / (T->hauteur * T->largeur)));
+  return 100 * nr_obs / (T->hauteur * T->largeur);
 }
